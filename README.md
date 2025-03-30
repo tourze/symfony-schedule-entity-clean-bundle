@@ -1,0 +1,1 @@
+# symfony-schedule-entity-clean-bundle
