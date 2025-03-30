@@ -1,0 +1,19 @@
+{
+  "name": "tourze/symfony-schedule-entity-clean-bundle",
+  "description": "",
+  "type": "symfony-bundle",
+  "require": {
+    "php": ">=8.1",
+    "nesbot/carbon": "^2.72 || ^3",
+    "doctrine/doctrine-bundle": "^2.13",
+    "symfony/event-dispatcher": "^6.4",
+    "symfony/framework-bundle": "^6.4",
+    "tourze/symfony-cron-job-bundle": "0.0.*",
+    "dragonmantank/cron-expression": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tourze\\ScheduleEntityCleanBundle\\": "src"
+    }
+  }
+}
