@@ -15,9 +15,11 @@ use Tourze\ScheduleEntityCleanBundle\Message\CleanEntityMessage;
 use Tourze\Symfony\CronJob\Attribute\AsCronTask;
 
 #[AsCronTask('* * * * *')]
-#[AsCommand(name: 'app:schedule-clean-entity', description: '定期清理实体数据')]
+#[AsCommand(name: self::NAME, description: '定期清理实体数据')]
 class ScheduleCleanEntityCommand extends Command
 {
+    const NAME = 'schedule-entity-clean:run';
+
     public function __construct(
         private readonly MessageBusInterface $messageBus,
         private readonly EntityManagerInterface $entityManager,
