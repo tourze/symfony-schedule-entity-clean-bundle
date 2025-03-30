@@ -2,6 +2,7 @@
   "name": "tourze/symfony-schedule-entity-clean-bundle",
   "description": "",
   "type": "symfony-bundle",
+  "license": "MIT",
   "require": {
     "php": ">=8.1",
     "nesbot/carbon": "^2.72 || ^3",
