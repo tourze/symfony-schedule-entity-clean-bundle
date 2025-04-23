@@ -20,6 +20,7 @@
     "tourze/symfony-cron-job-bundle": "0.0.*",
     "tourze/symfony-async-bundle": "0.0.*",
     "dragonmantank/cron-expression": "^3.4",
+    "symfony/yaml": "^6.4 || ^7.1",
     "psr/log": "^3|^2|^1"
   },
   "autoload": {
