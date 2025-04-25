@@ -28,6 +28,11 @@
       "Tourze\\ScheduleEntityCleanBundle\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tourze\\ScheduleEntityCleanBundle\\Tests\\": "tests"
+    }
+  },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^10.0"
