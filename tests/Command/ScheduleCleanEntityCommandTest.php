@@ -123,12 +123,14 @@ class ScheduleCleanEntityCommandTest extends TestCase
     public function testExecuteWithCronNotDue(): void
     {
         $className = 'App\Entity\TestEntityWithAttribute';
-        $attributeMock = $this->getMockBuilder(AsScheduleClean::class)
-            ->setConstructorArgs(['0 0 * * *', 7, null])
-            ->getMock();
-
-        $attribute = new \ReflectionAttribute(AsScheduleClean::class, 0);
-
+        
+        // 创建一个模拟的ReflectionAttribute并设置newInstance方法返回AsScheduleClean实例
+        $attributeInstance = new AsScheduleClean('0 0 * * *', 7, null);
+        $attributeMock = $this->createMock(\ReflectionAttribute::class);
+        $attributeMock->expects($this->once())
+            ->method('newInstance')
+            ->willReturn($attributeInstance);
+        
         $reflection = $this->createMock(ReflectionClass::class);
         $reflection->expects($this->once())
             ->method('hasProperty')
@@ -137,7 +139,7 @@ class ScheduleCleanEntityCommandTest extends TestCase
         $reflection->expects($this->once())
             ->method('getAttributes')
             ->with(AsScheduleClean::class)
-            ->willReturn([$attribute]);
+            ->willReturn([$attributeMock]);
 
         $metadata = $this->createMock(ClassMetadata::class);
         $metadata->expects($this->once())

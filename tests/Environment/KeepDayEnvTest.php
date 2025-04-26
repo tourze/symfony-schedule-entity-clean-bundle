@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Tourze\ScheduleEntityCleanBundle\Command\ScheduleCleanEntityCommand;
 use Tourze\ScheduleEntityCleanBundle\Message\CleanEntityMessage;
@@ -51,15 +52,16 @@ class KeepDayEnvTest extends TestCase
         // 设置时间以确保cron表达式匹配
         Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
 
-        // 期望消息总线接收消息
+        // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
             ->method('dispatch')
-            ->with($this->callback(function (CleanEntityMessage $message) use ($className) {
-                $this->assertEquals($className, $message->getModelClass());
-                // 验证环境变量覆盖了默认值
+            ->willReturnCallback(function ($message) {
+                $this->assertInstanceOf(CleanEntityMessage::class, $message);
+                $this->assertEquals(TestEntityWithEnv::class, $message->getModelClass());
                 $this->assertEquals(60, $message->getKeepDay());
-                return true;
-            }));
+                // 返回一个封装message的新Envelope对象
+                return new Envelope($message);
+            });
 
         // 执行命令
         $this->commandTester->execute([]);
@@ -97,15 +99,16 @@ class KeepDayEnvTest extends TestCase
         // 设置时间以确保cron表达式匹配
         Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
 
-        // 期望消息总线接收消息
+        // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
             ->method('dispatch')
-            ->with($this->callback(function (CleanEntityMessage $message) use ($className) {
-                $this->assertEquals($className, $message->getModelClass());
-                // 验证使用了默认值
+            ->willReturnCallback(function ($message) {
+                $this->assertInstanceOf(CleanEntityMessage::class, $message);
+                $this->assertEquals(TestEntityWithEnv::class, $message->getModelClass());
                 $this->assertEquals(7, $message->getKeepDay());
-                return true;
-            }));
+                // 返回一个封装message的新Envelope对象
+                return new Envelope($message);
+            });
 
         // 执行命令
         $this->commandTester->execute([]);
@@ -136,15 +139,16 @@ class KeepDayEnvTest extends TestCase
         // 设置时间以确保cron表达式匹配
         Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
 
-        // 期望消息总线接收消息
+        // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
             ->method('dispatch')
-            ->with($this->callback(function (CleanEntityMessage $message) use ($className) {
-                $this->assertEquals($className, $message->getModelClass());
-                // 虽然环境变量无效，但intval会将其转为0
+            ->willReturnCallback(function ($message) {
+                $this->assertInstanceOf(CleanEntityMessage::class, $message);
+                $this->assertEquals(TestEntityWithEnv::class, $message->getModelClass());
                 $this->assertEquals(0, $message->getKeepDay());
-                return true;
-            }));
+                // 返回一个封装message的新Envelope对象
+                return new Envelope($message);
+            });
 
         // 执行命令
         $this->commandTester->execute([]);
