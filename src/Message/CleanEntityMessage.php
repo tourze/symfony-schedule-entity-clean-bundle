@@ -2,7 +2,7 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Message;
 
-use Tourze\Symfony\Async\Message\AsyncMessageInterface;
+use Tourze\AsyncContracts\AsyncMessageInterface;
 
 /**
  * 有些表的数据我们不是十分关心的，可以定期清理的
