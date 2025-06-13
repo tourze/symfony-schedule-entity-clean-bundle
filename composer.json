@@ -22,6 +22,7 @@
     "symfony/messenger": "^6.4",
     "symfony/yaml": "^6.4 || ^7.1",
     "tourze/async-contracts": "0.0.*",
+    "tourze/bundle-dependency": "0.0.*",
     "tourze/symfony-cron-job-bundle": "0.1.*"
   },
   "require-dev": {
