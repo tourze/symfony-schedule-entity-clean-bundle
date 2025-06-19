@@ -2,7 +2,7 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\MessageHandler;
 
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -24,7 +24,8 @@ class CleanEntityHandler
     {
         $entityManager = $this->registry->getManagerForClass($message->getModelClass());
         $repo = $entityManager->getRepository($message->getModelClass());
-        $now = Carbon::now();
+        /** @var \Doctrine\ORM\EntityRepository $repo */
+        $now = CarbonImmutable::now();
         $keepDay = $message->getKeepDay();
         $lastTime = $now->subDays($keepDay);
 

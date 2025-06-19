@@ -2,7 +2,7 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Command;
 
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Cron\CronExpression;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -29,7 +29,7 @@ class ScheduleCleanEntityCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $now = Carbon::now();
+        $now = CarbonImmutable::now();
 
         $metas = $this->entityManager->getMetadataFactory()->getAllMetadata();
         foreach ($metas as $meta) {
@@ -56,7 +56,7 @@ class ScheduleCleanEntityCommand extends Command
                 }
 
                 $keepDay = $attribute->defaultKeepDay;
-                if ($attribute->keepDayEnv && isset($_ENV[$attribute->keepDayEnv])) {
+                if ($attribute->keepDayEnv !== null && $attribute->keepDayEnv !== '' && isset($_ENV[$attribute->keepDayEnv])) {
                     $keepDay = intval($_ENV[$attribute->keepDayEnv]);
                 }
 

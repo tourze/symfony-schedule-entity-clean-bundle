@@ -2,7 +2,7 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Tests\Integration;
 
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -68,7 +68,7 @@ class ScheduleEntityCleanIntegrationTest extends TestCase
         $this->entityManager->method('getMetadataFactory')->willReturn($metadataFactory);
 
         // 设置时间以确保cron表达式匹配
-        Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
+        CarbonImmutable::setTestNow(CarbonImmutable::create(2023, 1, 1, 0, 0, 0));
 
         // 期望消息总线接收消息
         $this->messageBus->expects($this->once())
@@ -134,6 +134,6 @@ class ScheduleEntityCleanIntegrationTest extends TestCase
         $this->handler->__invoke($message);
 
         // 重置测试时间
-        Carbon::setTestNow();
+        CarbonImmutable::setTestNow();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Tests\Environment;
 
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataFactory;
@@ -50,7 +50,7 @@ class KeepDayEnvTest extends TestCase
         $this->entityManager->method('getMetadataFactory')->willReturn($metadataFactory);
 
         // 设置时间以确保cron表达式匹配
-        Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
+        CarbonImmutable::setTestNow(CarbonImmutable::create(2023, 1, 1, 0, 0, 0));
 
         // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
@@ -74,7 +74,7 @@ class KeepDayEnvTest extends TestCase
         unset($_ENV['TEST_KEEP_DAY']);
 
         // 重置测试时间
-        Carbon::setTestNow();
+        CarbonImmutable::setTestNow();
     }
 
     public function testMissingEnvironmentVariable(): void
@@ -97,7 +97,7 @@ class KeepDayEnvTest extends TestCase
         $this->entityManager->method('getMetadataFactory')->willReturn($metadataFactory);
 
         // 设置时间以确保cron表达式匹配
-        Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
+        CarbonImmutable::setTestNow(CarbonImmutable::create(2023, 1, 1, 0, 0, 0));
 
         // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
@@ -114,7 +114,7 @@ class KeepDayEnvTest extends TestCase
         $this->commandTester->execute([]);
 
         // 重置测试时间
-        Carbon::setTestNow();
+        CarbonImmutable::setTestNow();
     }
 
     public function testInvalidEnvironmentVariable(): void
@@ -137,7 +137,7 @@ class KeepDayEnvTest extends TestCase
         $this->entityManager->method('getMetadataFactory')->willReturn($metadataFactory);
 
         // 设置时间以确保cron表达式匹配
-        Carbon::setTestNow(Carbon::create(2023, 1, 1, 0, 0, 0));
+        CarbonImmutable::setTestNow(CarbonImmutable::create(2023, 1, 1, 0, 0, 0));
 
         // 设置messageBus的dispatch方法返回一个预设的Envelope对象
         $this->messageBus->expects($this->once())
@@ -157,6 +157,6 @@ class KeepDayEnvTest extends TestCase
         unset($_ENV['TEST_KEEP_DAY']);
 
         // 重置测试时间
-        Carbon::setTestNow();
+        CarbonImmutable::setTestNow();
     }
 }
