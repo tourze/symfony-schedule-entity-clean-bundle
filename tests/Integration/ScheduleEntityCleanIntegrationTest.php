@@ -16,7 +16,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Tourze\ScheduleEntityCleanBundle\Command\ScheduleCleanEntityCommand;
 use Tourze\ScheduleEntityCleanBundle\Message\CleanEntityMessage;
 use Tourze\ScheduleEntityCleanBundle\MessageHandler\CleanEntityHandler;
-use Tourze\ScheduleEntityCleanBundle\Tests\TestEntity\TestEntity;
+use Tourze\ScheduleEntityCleanBundle\Tests\Entity\TestEntity;
 
 class ScheduleEntityCleanIntegrationTest extends TestCase
 {

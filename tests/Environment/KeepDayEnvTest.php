@@ -13,7 +13,7 @@ use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Tourze\ScheduleEntityCleanBundle\Command\ScheduleCleanEntityCommand;
 use Tourze\ScheduleEntityCleanBundle\Message\CleanEntityMessage;
-use Tourze\ScheduleEntityCleanBundle\Tests\TestEntity\TestEntityWithEnv;
+use Tourze\ScheduleEntityCleanBundle\Tests\Entity\TestEntityWithEnv;
 
 class KeepDayEnvTest extends TestCase
 {

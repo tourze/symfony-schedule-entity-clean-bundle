@@ -1,14 +1,14 @@
 <?php
 
-namespace Tourze\ScheduleEntityCleanBundle\Tests\TestEntity;
+namespace Tourze\ScheduleEntityCleanBundle\Tests\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Tourze\ScheduleEntityCleanBundle\Attribute\AsScheduleClean;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'test_entity_with_env', options: ['comment' => '带环境变量的测试实体'])]
-#[AsScheduleClean(expression: '0 0 * * *', defaultKeepDay: 7, keepDayEnv: 'TEST_KEEP_DAY')]
-class TestEntityWithEnv implements \Stringable
+#[ORM\Table(name: 'test_entity', options: ['comment' => '测试实体'])]
+#[AsScheduleClean(expression: '0 0 * * *', defaultKeepDay: 30)]
+class TestEntity implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -41,6 +41,6 @@ class TestEntityWithEnv implements \Stringable
 
     public function __toString(): string
     {
-        return 'TestEntityWithEnv#' . ($this->id ?? 'null');
+        return 'TestEntity#' . ($this->id ?? 'null');
     }
 }

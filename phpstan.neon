@@ -1,0 +1,21 @@
+includes:
+    - ../../phpstan.neon
+
+parameters:
+    ignoreErrors:
+        # 测试用的实体类不需要对应的测试类
+        -
+            message: '#Class .+ExampleEntity does not have a corresponding test class#'
+            path: tests/Functional/ExampleUsageTest.php
+        -
+            message: '#Class .+TestEntity does not have a corresponding test class#'
+            path: tests/TestEntity/TestEntity.php
+        -
+            message: '#Class .+TestEntityWithEnv does not have a corresponding test class#'
+            path: tests/TestEntity/TestEntityWithEnv.php
+        # 测试用的实体类可以在 TestEntity 命名空间中
+        -
+            message: '#Class with \#\[Entity\] attribute must be located in "Entity" namespace#'
+            paths:
+                - tests/TestEntity/TestEntity.php
+                - tests/TestEntity/TestEntityWithEnv.php
