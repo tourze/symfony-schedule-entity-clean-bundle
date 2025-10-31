@@ -2,10 +2,15 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Tests\Message;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tourze\ScheduleEntityCleanBundle\Message\CleanEntityMessage;
 
-class CleanEntityMessageTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(CleanEntityMessage::class)]
+final class CleanEntityMessageTest extends TestCase
 {
     public function testGetSetModelClass(): void
     {

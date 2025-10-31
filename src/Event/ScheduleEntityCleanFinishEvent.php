@@ -8,8 +8,7 @@ class ScheduleEntityCleanFinishEvent extends Event
 {
     public function __construct(
         private readonly string $modelClass,
-    )
-    {
+    ) {
     }
 
     public function getModelClass(): string

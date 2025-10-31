@@ -1,27 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tourze\ScheduleEntityCleanBundle\Tests;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Tourze\PHPUnitSymfonyKernelTest\AbstractBundleTestCase;
 use Tourze\ScheduleEntityCleanBundle\ScheduleEntityCleanBundle;
 
-class ScheduleEntityCleanBundleTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(ScheduleEntityCleanBundle::class)]
+#[RunTestsInSeparateProcesses]
+final class ScheduleEntityCleanBundleTest extends AbstractBundleTestCase
 {
-    public function testInstanceOfBundle(): void
-    {
-        $bundle = new ScheduleEntityCleanBundle();
-        
-        $this->assertInstanceOf(Bundle::class, $bundle);
-    }
-    
-    public function testGetPath(): void
-    {
-        $bundle = new ScheduleEntityCleanBundle();
-        $path = $bundle->getPath();
-        
-        $this->assertDirectoryExists($path);
-        $this->assertDirectoryExists($path . '/Resources');
-        $this->assertFileExists($path . '/Resources/config/services.yaml');
-    }
-} 
+}

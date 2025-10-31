@@ -2,10 +2,15 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Tests\Event;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Tourze\PHPUnitSymfonyUnitTest\AbstractEventTestCase;
 use Tourze\ScheduleEntityCleanBundle\Event\ScheduleEntityCleanFinishEvent;
 
-class ScheduleEntityCleanFinishEventTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(ScheduleEntityCleanFinishEvent::class)]
+final class ScheduleEntityCleanFinishEventTest extends AbstractEventTestCase
 {
     public function testGetModelClass(): void
     {

@@ -2,10 +2,15 @@
 
 namespace Tourze\ScheduleEntityCleanBundle\Tests\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tourze\ScheduleEntityCleanBundle\Attribute\AsScheduleClean;
 
-class AsScheduleCleanTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(AsScheduleClean::class)]
+final class AsScheduleCleanTest extends TestCase
 {
     public function testDefaultValues(): void
     {
