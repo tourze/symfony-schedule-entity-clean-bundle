@@ -53,7 +53,7 @@ final class ScheduleEntityCleanUnitTest extends AbstractCommandTestCase
         self::assertInstanceOf(ScheduleCleanEntityCommand::class, $command);
         $this->command = $command;
         $application = new Application();
-        $application->add($this->command);
+        $application->addCommand($this->command);
         $this->commandTester = new CommandTester($this->command);
 
         // 设置时间以确保cron表达式匹配
@@ -104,7 +104,7 @@ final class ScheduleEntityCleanUnitTest extends AbstractCommandTestCase
         self::assertInstanceOf(ScheduleCleanEntityCommand::class, $command);
         $this->command = $command;
         $application = new Application();
-        $application->add($this->command);
+        $application->addCommand($this->command);
         $this->commandTester = new CommandTester($this->command);
 
         // 不应该发送任何消息

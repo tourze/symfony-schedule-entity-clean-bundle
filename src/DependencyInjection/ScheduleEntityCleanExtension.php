@@ -4,7 +4,7 @@ namespace Tourze\ScheduleEntityCleanBundle\DependencyInjection;
 
 use Tourze\SymfonyDependencyServiceLoader\AutoExtension;
 
-class ScheduleEntityCleanExtension extends AutoExtension
+final class ScheduleEntityCleanExtension extends AutoExtension
 {
     protected function getConfigDir(): string
     {
